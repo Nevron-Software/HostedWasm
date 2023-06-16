@@ -24,7 +24,7 @@ stages:
       displayName: Build an image
       inputs:
         command: buildAndPush
-        repository: HostedWasm
+        repository: BlazorTest
         dockerfile: '**/Dockerfile'
         containerRegistry: BlazorTest
         tags: |
