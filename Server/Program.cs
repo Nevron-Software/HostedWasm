@@ -1,5 +1,6 @@
 using HostedWasm.Server.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Nevron.Nov;
 using System.Globalization;
 
@@ -11,7 +12,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 // add db context
 
-string? connString = Environment.GetEnvironmentVariable("ConnectionString");
+//string? connString = Environment.GetEnvironmentVariable("ConnectionString");
+string? connString = builder.Configuration.GetConnectionString("ConnectionString");
 
 if (string.IsNullOrEmpty(connString))
     connString = "";
