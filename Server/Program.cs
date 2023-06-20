@@ -1,9 +1,5 @@
-using HostedWasm.Server.Model;
 using HostedWasm.Server.Services;
-using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
 using Nevron.Nov;
 using System.Globalization;
 

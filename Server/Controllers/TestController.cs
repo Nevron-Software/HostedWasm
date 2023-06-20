@@ -26,6 +26,20 @@ namespace HostedWasm.Server.Controllers
             List<Order> orders = await m_OrderService.GetOrdersAsync();
             return orders;
         }
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("GetTest")]
+        public string GetVarValue()
+        {
+            string? testVar = Environment.GetEnvironmentVariable("TEST");
+
+            if (string.IsNullOrEmpty(testVar))
+            {
+                testVar = "Not Found";
+            }
+
+            return testVar;
+        }
 
         #region Fields
 
