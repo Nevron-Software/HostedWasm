@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Nevron.Nov;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,7 +19,7 @@ builder.Services.AddDbContext<NDbContext>(options => { options.UseSqlServer(conn
 builder.Services.AddTransient<INOrderBlService, NOrderBl>();
 
 // test the referenced assemblies
-string appFolder = NApplication.ApplicationFolder.Path;
+CultureInfo culture = NApplication.CurrentCulture;
 
 var app = builder.Build();
 
