@@ -10,12 +10,24 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="6.0.18" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.7" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Client\HostedWasm.Client.csproj" />
     <ProjectReference Include="..\Shared\HostedWasm.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="References\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Nevron.Nov.Presentation">
+      <HintPath>References\Nevron.Nov.Presentation.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 

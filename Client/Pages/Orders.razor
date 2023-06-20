@@ -1,0 +1,44 @@
+﻿@page "/orders"
+@using HostedWasm.Shared
+@inject HttpClient m_HttpClient
+
+
+<h3>Orders</h3>
+
+@if (orders != null)
+{
+    <table class="table-bordered">
+        <thead>
+            <tr>
+                <th>Customer Id</th>
+                <th>Product Id</th>
+                <th>Quantity</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(NOrderModel order in orders)
+            {
+                <tr>
+                    <td>@order.CustomerId</td>
+                    <td>@order.ProductId</td>
+                    <td>@order.Quantity</td>
+                    <td>@order.Date</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    List<NOrderModel> orders = new List<NOrderModel>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        HttpResponseMessage httpResponse = await m_HttpClient.GetAsync("test");
+
+        httpResponse.EnsureSuccessStatusCode();
+
+        orders = await httpResponse.Content.ReadFromJsonAsync<List<NOrderModel>>();
+    }
+}

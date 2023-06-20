@@ -1,4 +1,10 @@
+using HostedWasm.Server.Model;
+using HostedWasm.Server.Services;
 using Microsoft.AspNetCore.ResponseCompression;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
+using Nevron.Nov;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +12,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+// add db context
+string connString = builder.Configuration.GetConnectionString("DBConnectionString");
+builder.Services.AddDbContext<NDbContext>(options => { options.UseSqlServer(connString); });
+builder.Services.AddTransient<INOrderBlService, NOrderBl>();
+
+// test the referenced assemblies
+string appFolder = NApplication.ApplicationFolder.Path;
 
 var app = builder.Build();
 
