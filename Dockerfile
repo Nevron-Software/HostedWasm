@@ -3,6 +3,7 @@
 # get ASP.NET:6.0 (the actual os) and name it build
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+
 #set working directory
 WORKDIR /app
 # expose ports 80 and 443
