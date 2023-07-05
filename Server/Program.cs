@@ -12,8 +12,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 // add db context
 
-//string? connString = Environment.GetEnvironmentVariable("ConnectionString");
 string? connString = builder.Configuration.GetConnectionString("ConnectionString");
+string serverSettings = builder.Configuration["ServerSettings:WebSiteName"];
 
 if (string.IsNullOrEmpty(connString))
     connString = "";

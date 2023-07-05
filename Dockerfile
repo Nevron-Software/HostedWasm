@@ -9,7 +9,7 @@ WORKDIR /app
 # expose ports 80 and 443
 EXPOSE 80
 EXPOSE 443
-# # get sdk:6.0 (the actual os) 
+# get sdk:6.0 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 
 #set working directory to src
@@ -29,7 +29,7 @@ RUN dotnet build "HostedWasm.Server.csproj" -c Release -o /app/build
 # publish
 FROM build AS publish
 RUN dotnet publish "HostedWasm.Server.csproj" -c Release -o /app/publish /p:UseAppHost=false
-
+# copy the folder with the published project in /app
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
